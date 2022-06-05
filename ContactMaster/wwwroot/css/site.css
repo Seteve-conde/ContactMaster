@@ -34,16 +34,15 @@ html {
     font-size: 16px;
   }
 }
-
 .border-top {
-  border-top: 1px solid #e5e5e5;
+  border-top: 3px solid #e5e5e5;
 }
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 .25rem .75rem rgb(43, 41, 41, 0,08);
 }
 
 button.accept-policy {
@@ -68,4 +67,46 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+  color: aqua;
 }
+.field-validation-error {
+    color: #c10c0c;
+}
+.close-alert {
+    position: absolute;
+    right: -10px;
+    top: -15px;
+    border-radius: 15px;
+    width: 30px;
+    height: 31px;
+}
+.my-custom-scrollbar {
+    position: relative;
+    height: 290px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+.bg_video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    z-index: -100;
+    
+}
+.btn {
+    border-block-color: blue;
+}
+    .btn:hover {
+        background-color: #59c1dc;
+        border-radius: 15px;
+    }
+
+
+
+

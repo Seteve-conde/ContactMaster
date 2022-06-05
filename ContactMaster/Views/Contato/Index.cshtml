@@ -1,19 +1,42 @@
-﻿@{
+﻿@using Dominio.Models
+@model List<ContatoModel>
+@{
     ViewData["Title"] = "Contacts List";
 }
 
-<div class="text-center">
-
+<div class="text-left">
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-primary" role="button" asp-controller="Contato" asp-action="Criar">Adicionar novo contato</a>
+        <a class="btn btn-secondary" role="button" asp-controller="Contato" asp-action="Criar">Adicionar novo contato</a>
+    </div>
+    <br />
+     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-secondary" role="button" target="_blank" asp-controller="Contato" asp-action="GerarPdf">Gerar relatorio</a>
     </div>
 
     <br />
+    
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label>X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label>X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
     <br />
 
     <h1 class="display-4">Contacts List</h1>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-    <table class="table">
+         <table class="table bg-transparent text-dark table table-bordered table-striped mb-0" cellspacing="0"  style= "background-color: darkblue" id="table-contatos">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -24,43 +47,31 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Bernardo</td>
-                <td>Bernardo@gmail.com</td>
-                <td>47 92486687</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" class="btn btn-primary" asp-controller="Contato" asp-action="Editar">Editar</a>
-                        <a role="button" class="btn btn-danger" asp-controller="Contato" asp-action="ApagarConfirmacao">Apagar</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Jacob@gmail.com</td>
-                <td>47 992996532</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" class="btn btn-primary" asp-controller="Contato" asp-action="Editar">Editar</a>
-                        <a role="button" class="btn btn-danger" asp-controller="Contato" asp-action="ApagarConfirmacao">Apagar</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>Larry@gmail.com</td>
-                <td>47984969922</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" class="btn btn-primary" asp-controller="Contato" asp-action="Editar">Editar</a>
-                        <a role="button" class="btn btn-danger" asp-controller="Contato" asp-action="ApagarConfirmacao">Apagar</a>
-                    </div>
-                </td>
-            </tr>
+            @if (Model != null && Model.Any())
+            {
+                foreach (ContatoModel contato in Model)
+                {
+                    <tr>
+                        <th scope="row">@contato.Id</th>
+                        <td>@contato.Nome</td>
+                        <td>@contato.Email</td>
+                        <td>@contato.Celular</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-secondary" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="Editar">Editar</a><br/>
+                                <a role="button" class="btn btn-danger" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="ApagarConfirmacao">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
         </tbody>
     </table>
+
+    </div>
+
+   
 </div>
+
+
 

@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using DataContext;
 using Dominio.Interfaces;
 using Dados.Repositorio;
+using Rotativa.AspNetCore;
+using Ioc;
 
 namespace ContactMaster
 {
@@ -23,14 +25,18 @@ namespace ContactMaster
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //services.AddEntityFrameworkSqlServer()
-            //    .AddDbContext<BancoContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDbContext<BancoContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
-        } 
+            NativeInjector.RegisterServices(services, Configuration);
+
+            //services.AddDbContext<BancoContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //services.AddDbContext<BancoContext>(opt => opt.UseOracle(Configuration.GetConnectionString("DefaultConnection")));
+                        
+            //services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        [System.Obsolete]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -56,6 +62,8 @@ namespace ContactMaster
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            RotativaConfiguration.Setup((Microsoft.AspNetCore.Hosting.IHostingEnvironment)env);
         }
     }
 }

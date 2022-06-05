@@ -4,25 +4,27 @@
 }
 
 <div class="text-center">
-
     <h1 class="display-4">Cadastrar Contato</h1>
-
 </div>
 
-<form>
+<form asp-controller="Contato" asp-action="Criar" method="post">
+
     <div class="mb-3">
         <label for="Nome">Nome</label>
-        <input type="text" class="form-control" placeholder="Nome do contato">
+        <input type="text" asp-for="Nome" class="form-control" placeholder="Nome do contato">
+        @Html.ValidationMessageFor(x => x.Nome)
     </div>
 
     <div class="mb-3">
         <label for="email">E-mail</label>
-        <input type="text" class="form-control" placeholder="Digite o e-mail do contato">
+        <input type="text" asp-for="Email" class="form-control" placeholder="Digite o e-mail do contato">
+        @Html.ValidationMessageFor(x => x.Email)
     </div>
 
     <div class="mb-3">
         <label for="Celular">Celular</label>
-        <input type="text" class="form-control" placeholder="Digite o Nº celular do contato">
+        <input type="text" asp-for="Celular" class="form-control" placeholder="Digite o Nº celular do contato">
+        @Html.ValidationMessageFor(x => x.Celular)
     </div>
 
     <button type="submit" class="btn btn-primary">Adicionar</button>
