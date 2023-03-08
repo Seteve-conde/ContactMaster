@@ -1,6 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-
+using System.Runtime.CompilerServices;
 
 namespace Dominio.Models
 {
@@ -22,5 +23,7 @@ namespace Dominio.Models
         [Required(ErrorMessage = "Digite o celular do contato")]
         [Phone(ErrorMessage = "O celular informado não é valido!")]
         public string Celular { get; set; }
+      
+        public DateTime Data { get; set; }
     }
 }
