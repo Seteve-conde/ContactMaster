@@ -11,9 +11,9 @@ namespace Ioc
 {
     public static class NativeInjector
     {
-        public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
+        public static void RegisterServices(IServiceCollection services, IConfiguration Configuration)
         {
-            services.AddDbContext<BancoContext>(opt => opt.UseSqlServer(configuration["ConnectionString"]));
+            services.AddDbContext<BancoContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
         }
     }

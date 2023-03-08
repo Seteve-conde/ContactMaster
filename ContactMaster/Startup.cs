@@ -32,7 +32,7 @@ namespace ContactMaster
 
             //services.AddDbContext<BancoContext>(opt => opt.UseOracle(Configuration.GetConnectionString("DefaultConnection")));
                         
-            //services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
+            services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dados.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20220605230544_initial")]
+    [Migration("20221118140333_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
