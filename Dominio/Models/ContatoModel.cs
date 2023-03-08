@@ -23,7 +23,8 @@ namespace Dominio.Models
         [Required(ErrorMessage = "Digite o celular do contato")]
         [Phone(ErrorMessage = "O celular informado não é valido!")]
         public string Celular { get; set; }
-      
+
+        [Required(ErrorMessage = "Digite o celular do contato")]
         public DateTime Data { get; set; }
     }
 }

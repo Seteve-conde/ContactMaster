@@ -42,6 +42,7 @@ namespace Dados.Repositorio
             contatoDb.Nome = contato.Nome;
             contatoDb.Email = contato.Email;
             contatoDb.Celular = contato.Celular;
+            contatoDb.Data = contato.Data;
 
             _bancoContext.Contatos.Update(contatoDb);
             _bancoContext.SaveChanges();
