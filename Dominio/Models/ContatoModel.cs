@@ -26,5 +26,7 @@ namespace Dominio.Models
 
         [Required(ErrorMessage = "Esta data não é valida")]
         public DateTime Data { get; set; }
+
+        public bool Selecionado { get; set; }
     }
 }
