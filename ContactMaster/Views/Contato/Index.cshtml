@@ -72,6 +72,17 @@
 
     </div>
 
+    <label for="lista-contatos">Lista de Contatos:</label>
+<select id="lista-contatos" name="lista-contatos">
+    @foreach (var contato in Model)
+    {
+        <option value="@contato.Id">
+            <input type="checkbox" id="selecionar-@contato.Id" name="selecionar-@contato.Id" value="@contato.Id" @(contato.Selecionado ? "checked" : "") />
+            <label for="selecionar-@contato.Id">@contato.Nome</label>
+        </option>
+    }
+</select>
+
    
 </div>
 
