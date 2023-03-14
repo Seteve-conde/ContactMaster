@@ -9,12 +9,12 @@
         <a class="btn btn-secondary" role="button" asp-controller="Contato" asp-action="Criar">Adicionar novo contato</a>
     </div>
     <br />
-     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
         <a class="btn btn-secondary" role="button" target="_blank" asp-controller="Contato" asp-action="GerarPdf">Gerar relatorio</a>
     </div>
 
     <br />
-    
+
     @if (TempData["MensagemSucesso"] != null)
     {
         <div class="alert alert-success" role="alert">
@@ -36,17 +36,17 @@
     <h1 class="display-4">Contacts List</h1>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-         <table class="table bg-transparent text-dark table table-bordered table-striped mb-0" cellspacing="0"  style= "background-color: darkblue" id="table-contatos">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Celular</th>
-                <th scope="col">Data</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
+        <table class="table bg-transparent text-dark table table-bordered table-striped mb-0" cellspacing="0" style="background-color: darkblue" id="table-contatos">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Data</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
             <tbody>
                 @if (Model != null && Model.Any())
                 {
@@ -68,22 +68,22 @@
                     }
                 }
             </tbody>
-    </table>
+        </table>
+    </div>
+    <br />
+    <div id="lista-contatos" name="lista-contatos" class="form-check d-flex flex-row align-items-center table-bordered" style="align-items:flex-start">
+        @foreach (var contato in Model)
+        {
 
+            <div class="form-check d-flex flex-row align-items-center">
+                <input type="checkbox" id="selecionar-@contato.Id" name="selecionar-@contato.Nome" value="@contato.Id" @(contato.Selecionado ? "checked" : "") class="form-check-input mr-2" />
+                <label class="form-check-label" for="selecionar-@contato.Id" style="width: 200px;">@contato.Nome</label>
+            </div>
+
+        }
     </div>
 
-    <label for="lista-contatos">Lista de Contatos:</label>
-<select id="lista-contatos" name="lista-contatos">
-    @foreach (var contato in Model)
-    {
-        <option value="@contato.Id">
-            <input type="checkbox" id="selecionar-@contato.Id" name="selecionar-@contato.Id" value="@contato.Id" @(contato.Selecionado ? "checked" : "") />
-            <label for="selecionar-@contato.Id">@contato.Nome</label>
-        </option>
-    }
-</select>
 
-   
 </div>
 
 
