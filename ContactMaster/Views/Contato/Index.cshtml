@@ -34,9 +34,9 @@
     <br />
 
     <h1 class="display-4">Contacts List</h1>
-    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <div class="table-bordered table-responsive">
 
-        <table class="table bg-transparent text-dark table table-bordered table-striped mb-0" cellspacing="0" style="background-color: darkblue" id="table-contatos">
+        <table class="table bg-transparent table-wrapper-scroll-y my-custom-scrollbar text-dark table table-bordered table-striped mb-0" cellspacing="0" style="background-color: darkblue" id="table-contatos">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -71,16 +71,18 @@
         </table>
     </div>
     <br />
-    <div id="lista-contatos" name="lista-contatos" class="form-check d-flex flex-row align-items-center table-bordered" style="align-items:flex-start">
-        @foreach (var contato in Model)
-        {
-
-            <div class="form-check d-flex flex-row align-items-center">
-                <input type="checkbox" id="selecionar-@contato.Id" name="selecionar-@contato.Nome" value="@contato.Id" @(contato.Selecionado ? "checked" : "") class="form-check-input mr-2" />
-                <label class="form-check-label" for="selecionar-@contato.Id" style="width: 200px;">@contato.Nome</label>
-            </div>
-
-        }
+    <div id="lista-contatos" name="lista-contatos" class="table-bordered">
+        <div class="row">
+            @foreach (var contato in Model)
+            {
+                <div class="col-md-3">
+                    <div class="form-check">
+                        <input type="checkbox" id="selecionar-@contato.Id" name="selecionar-@contato.Nome" value="@contato.Id" @(contato.Selecionado ? "checked" : "") class="form-check-input mr-2" />
+                        <label class="form-check-label" for="selecionar-@contato.Id">@contato.Nome</label>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 
 
