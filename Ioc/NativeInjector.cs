@@ -15,6 +15,7 @@ namespace Ioc
         {
             services.AddDbContext<BancoContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
+            services.AddScoped<IBonusRepositorio, BonusRepositorio>();
         }
     }
 }

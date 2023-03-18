@@ -11,5 +11,6 @@ namespace DataContext
         }
 
         public DbSet<ContatoModel> Contatos { get; set; }
+        public DbSet<BonusModel> bonusModels { get; set; }
     }
 }
