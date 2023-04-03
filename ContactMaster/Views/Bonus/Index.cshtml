@@ -4,9 +4,38 @@
     ViewData["Title"] = "Bonus";
 }
 
+
 <h2>
     Bonus de vitoria
 </h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Exemplo de box com Razor e Bootstrap</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <style>
+        #meuBox {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="Clique aqui" onclick="$('#meuBox').toggle();" class="btn btn-primary" />
+    <div id="meuBox">
+        <p>Conteúdo do box.</p>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+</body>
+</html>
+
+<br/>
 <h3>Conteúdo bônus</h3>
 <div class="bonus-content custom-control-inline">
    
