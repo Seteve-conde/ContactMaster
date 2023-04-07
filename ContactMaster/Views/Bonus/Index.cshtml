@@ -55,11 +55,14 @@
     <p>Aqui está uma imagem bônus para você desfrutar!</p>
 </div>
 <div>
-    <table>
-        <div>
-            <h2>
-                Vamos fazer o verdinho
-            </h2>
+    <h2>
+        Vamos fazer o verdinho
+
+        <input type="button" value="Clique Verdinho" onclick="$('#meuBox').toggle();" class="btn btn-primary" />
+        <div id="meuBox" style="display:none;">
+            <p>Conteúdo do box.</p>
+            <input class="bg-transparent" type="text" name="texto" placeholder="Digite seu texto aqui" style="width: 100%; height: 100%; border: none; flex-flow:row;">
         </div>
-    </table>
+    </h2>           
+        
 </div>
