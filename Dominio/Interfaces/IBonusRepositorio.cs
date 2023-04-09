@@ -7,8 +7,6 @@ namespace Dominio.Interfaces
     {
         BonusModel ListarBonusPorId(int id);
         List<BonusModel> BuscarTodosBonus();
-        
-            
-        
+        void AdicionarBonus(BonusModel bonus);
     }
 }

@@ -25,5 +25,12 @@ namespace ContactMaster.Controllers
             List<BonusModel> bonus = _bonusRepositorio.BuscarTodosBonus();
             return View(bonus);
         }
+
+        [HttpPost]
+        public IActionResult IndexBonus(BonusModel bonus)
+        {
+            _bonusRepositorio.AdicionarBonus(bonus);
+            return RedirectToAction(nameof(IndexBonus));
+        }
     }
 }
