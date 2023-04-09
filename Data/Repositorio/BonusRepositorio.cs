@@ -24,5 +24,11 @@ namespace Dados.Repositorio
         {
             return _bancoContext.bonusModels.ToList();
         }
+
+        public void AdicionarBonus(BonusModel bonus)
+        {
+            _bancoContext.bonusModels.Add(bonus);
+            _bancoContext.SaveChanges();
+        }
     }
 }
