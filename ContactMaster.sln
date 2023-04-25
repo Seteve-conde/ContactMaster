@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dados", "Data\Dados.csproj"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio", "Dominio\Dominio.csproj", "{D320D20D-F1DD-4663-94E4-82AC2AF5AF04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ioc", "Ioc\Ioc.csproj", "{8FB85D46-1FE3-47E3-B708-F3EA9C051A63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ioc", "Ioc\Ioc.csproj", "{8FB85D46-1FE3-47E3-B708-F3EA9C051A63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactMasterService", "ContactMasterService\ContactMasterService.csproj", "{9ADD08F7-12C1-412E-A560-2B385EAB1528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{8FB85D46-1FE3-47E3-B708-F3EA9C051A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FB85D46-1FE3-47E3-B708-F3EA9C051A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FB85D46-1FE3-47E3-B708-F3EA9C051A63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ADD08F7-12C1-412E-A560-2B385EAB1528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ADD08F7-12C1-412E-A560-2B385EAB1528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ADD08F7-12C1-412E-A560-2B385EAB1528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ADD08F7-12C1-412E-A560-2B385EAB1528}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

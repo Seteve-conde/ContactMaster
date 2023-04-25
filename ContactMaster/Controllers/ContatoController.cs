@@ -1,53 +1,55 @@
-﻿using Dominio.Interfaces;
+﻿using ContactMaster.Services;
+using Dominio.Interfaces;
 using Dominio.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ContactMaster.Controllers
 {
     public class ContatoController : Controller
     {
-        private readonly IContatoRepositorio _contatoRepositorio;
+        private readonly IContatoService _contatoService;
 
-        public ContatoController(IContatoRepositorio contatoRepositorio)
+        public ContatoController(IContatoService contatoService)
         {
-            _contatoRepositorio = contatoRepositorio;
+            _contatoService = contatoService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<ContatoModel> contatos = _contatoRepositorio.BuscarTodos();
+            List<ContatoModel> contatos = await _contatoService.ObterTodos();
             return View(contatos);
         }
 
-        public IActionResult GerarPdf()
+        public async Task<IActionResult> GerarPdf()
         {
-            List<ContatoModel> contatos = _contatoRepositorio.BuscarTodos();
+            List<ContatoModel> contatos = await _contatoService.ObterTodos();
             return new Rotativa.AspNetCore.ViewAsPdf("Index", contatos);
         }
 
-        public IActionResult Criar()
+        public async Task<IActionResult> Criar()
         {
             return View();
         }
 
-        public IActionResult Editar(int id)
+        public async Task<IActionResult> Editar(int id)
         {
-            ContatoModel contato = _contatoRepositorio.ListarPorId(id);
+            ContatoModel contato = await _contatoService.ObterPorId(id);
             return View(contato);
         }
 
-        public IActionResult ApagarConfirmacao(int id)
+        public async Task<IActionResult> ApagarConfirmacao(int id)
         {
-            ContatoModel contato = _contatoRepositorio.ListarPorId(id);
+            ContatoModel contato = await _contatoService.ObterPorId(id);
             return View(contato);
         }
 
-        public IActionResult Apagar(int id)
+        public async Task<IActionResult> Apagar(int id)
         {
             try
             {
-                bool apagado = _contatoRepositorio.Apagar(id);
+                bool apagado = await _contatoService.Apagar(id);
                 
                 if (apagado)
                 {
@@ -69,13 +71,13 @@ namespace ContactMaster.Controllers
         }
 
         [HttpPost]
-        public IActionResult Criar(ContatoModel contato)
+        public async Task<IActionResult> Criar(ContatoModel contato)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _contatoRepositorio.Adicionar(contato);
+                    await _contatoService.Adicionar(contato);
                     TempData["MensagemSucesso"] = "Contato cadastrado com sucesso!";
                     return RedirectToAction("Index");
                 }
@@ -90,13 +92,13 @@ namespace ContactMaster.Controllers
         }
 
         [HttpPost]
-        public IActionResult Alterar(ContatoModel contato)
+        public async Task<IActionResult> Alterar(ContatoModel contato)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _contatoRepositorio.Atualizar(contato);
+                    await _contatoService.Atualizar(contato);
                     TempData["MensagemSucesso"] = "Contato alterado com sucesso";
                     return RedirectToAction("Index");
                 }

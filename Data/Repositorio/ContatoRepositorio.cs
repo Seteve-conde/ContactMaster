@@ -1,8 +1,10 @@
 ﻿using DataContext;
 using Dominio.Interfaces;
 using Dominio.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Dados.Repositorio
 {
@@ -15,27 +17,27 @@ namespace Dados.Repositorio
             _bancoContext = bancoContext;
         }
 
-        public ContatoModel ListarPorId(int id)
+        public async Task<ContatoModel> ListarPorId(int id)
         {
-           return _bancoContext.Contatos.FirstOrDefault(x => x.Id == id);
+           return await _bancoContext.Contatos.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public List<ContatoModel> BuscarTodos()
+        public async Task<List<ContatoModel>> BuscarTodos()
         {
-           return _bancoContext.Contatos.ToList();
+           return await _bancoContext.Contatos.ToListAsync();
         }       
 
-        public ContatoModel Adicionar(ContatoModel contato)
+        public async Task<ContatoModel> Adicionar(ContatoModel contato)
         {
-            _bancoContext.Contatos.Add(contato);
-            _bancoContext.SaveChanges();
+            await _bancoContext.Contatos.AddAsync(contato);
+            await _bancoContext.SaveChangesAsync();
 
             return contato;
         }
 
-        public ContatoModel Atualizar(ContatoModel contato)
+        public async Task<ContatoModel> Atualizar(ContatoModel contato)
         {
-            ContatoModel contatoDb = ListarPorId(contato.Id);
+            ContatoModel contatoDb = await ListarPorId(contato.Id);
 
             if (contatoDb == null) throw new System.Exception("Ouve um erro ao atualizar dados do contato!");
 
@@ -45,19 +47,19 @@ namespace Dados.Repositorio
             contatoDb.Data = contato.Data;
 
             _bancoContext.Contatos.Update(contatoDb);
-            _bancoContext.SaveChanges();
+            await _bancoContext.SaveChangesAsync();
 
             return contatoDb;
         }
 
-        public bool Apagar(int id)
+        public async Task<bool> Apagar(int id)
         {
-            ContatoModel contatoDb = ListarPorId(id);
+            ContatoModel contatoDb = await ListarPorId(id);
 
             if (contatoDb == null) throw new System.Exception("Houve um erro ao tentar Apagar o Contato");
 
             _bancoContext.Contatos.Remove(contatoDb);
-            _bancoContext.SaveChanges();
+            await _bancoContext.SaveChangesAsync();
 
             return true;
         }
