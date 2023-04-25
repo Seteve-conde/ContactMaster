@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Dominio.Interfaces
+namespace ContactMaster.Services
 {
-    public interface IContatoRepositorio
+    public interface IContatoService
     {
-        Task<ContatoModel> ListarPorId(int id);
-        Task<List<ContatoModel>> BuscarTodos();
+        Task<ContatoModel> ObterPorId(int id);
+        Task<List<ContatoModel>> ObterTodos();
         Task<ContatoModel> Adicionar(ContatoModel contato);
         Task<ContatoModel> Atualizar(ContatoModel contato);
         Task<bool> Apagar(int id);
     }
 }
+

@@ -1,11 +1,11 @@
-﻿using Dados.Repositorio;
+﻿using ContactMaster.Services;
+using Dados.Repositorio;
 using DataContext;
 using Dominio.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Configuration;
+
 
 namespace Ioc
 {
@@ -16,6 +16,7 @@ namespace Ioc
             services.AddDbContext<BancoContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
             services.AddScoped<IBonusRepositorio, BonusRepositorio>();
+            services.AddScoped<IContatoService, ContatoService>();
         }
     }
 }
