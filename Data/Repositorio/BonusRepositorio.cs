@@ -17,17 +17,17 @@ namespace Dados.Repositorio
 
         public BonusModel ListarBonusPorId(int id) 
         {
-            return _bancoContext.bonusModels.FirstOrDefault(x => x.Id == id);
+            return _bancoContext.BonusModels.FirstOrDefault(x => x.Id == id);
         }
 
         public List<BonusModel> BuscarTodosBonus()
         {
-            return _bancoContext.bonusModels.ToList();
+            return _bancoContext.BonusModels.ToList();
         }
 
         public void AdicionarBonus(BonusModel bonus)
         {
-            _bancoContext.bonusModels.Add(bonus);
+            _bancoContext.BonusModels.Add(bonus);
             _bancoContext.SaveChanges();
         }
     }
