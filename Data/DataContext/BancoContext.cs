@@ -11,7 +11,8 @@ namespace DataContext
         }
 
         public DbSet<ContatoModel> Contatos { get; set; }
-        public DbSet<BonusModel> bonusModels { get; set; }
+        public DbSet<UsuarioModel> Usuarios { get; set; }
+        public DbSet<BonusModel> BonusModels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

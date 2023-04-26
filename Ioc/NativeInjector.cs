@@ -1,4 +1,5 @@
 ﻿using ContactMaster.Services;
+using ContactMasterService;
 using Dados.Repositorio;
 using DataContext;
 using Dominio.Interfaces;
@@ -17,6 +18,8 @@ namespace Ioc
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
             services.AddScoped<IBonusRepositorio, BonusRepositorio>();
             services.AddScoped<IContatoService, ContatoService>();
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
         }
     }
 }

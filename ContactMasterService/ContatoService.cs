@@ -1,11 +1,12 @@
-﻿using Dominio.Interfaces;
+﻿using ContactMaster.Services;
+using Dominio.Interfaces;
 using Dominio.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ContactMaster.Services
+namespace ContactMasterService
 {
     public class ContatoService : IContatoService
     {
