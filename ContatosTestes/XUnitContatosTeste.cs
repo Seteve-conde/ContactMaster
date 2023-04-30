@@ -59,7 +59,7 @@ namespace ContatosTestes
         public async Task Adicionar_DeveAdicionarContato()
         {
             // Arrange
-            var novoContato = new ContatoModel { Nome = "Fulano", Celular = "11987654321", Email = "fulano@teste.com" };
+            var novoContato = new ContatoModel { Nome = "Abrao", Celular = "11987654321", Email = "abrao@teste.com" };
             var contatosExistentes = new List<ContatoModel>();
             _mockContatoRepositorio.Setup(x => x.BuscarTodos()).ReturnsAsync(contatosExistentes);
             _mockContatoRepositorio.Setup(x => x.Adicionar(novoContato)).ReturnsAsync(novoContato);
@@ -75,7 +75,7 @@ namespace ContatosTestes
         public async Task Adicionar_DeveLancarExceptionSeContatoExistir()
         {
             // Arrange
-            var novoContato = new ContatoModel { Nome = "Fulano", Celular = "11987654321", Email = "fulano@teste.com" };
+            var novoContato = new ContatoModel { Nome = "Abrao", Celular = "11987654321", Email = "abrao@teste.com" };
             var contatosExistentes = new List<ContatoModel> { novoContato };
             _mockContatoRepositorio.Setup(x => x.BuscarTodos()).ReturnsAsync(contatosExistentes);
 
@@ -88,8 +88,8 @@ namespace ContatosTestes
         {
             // Arrange
             int id = 1;
-            var contato = new ContatoModel() { Id = id, Nome = "Fulano", Celular = "11987654321", Email = "fulano@teste.com" };
-            var contatoAtualizado = new ContatoModel() { Id = id, Nome = "Ciclano", Celular = "11912345678", Email = "ciclano@teste.com" };
+            var contato = new ContatoModel() { Id = id, Nome = "Abrao", Celular = "11987654321", Email = "abrao@teste.com" };
+            var contatoAtualizado = new ContatoModel() { Id = id, Nome = "Cilas", Celular = "11912345678", Email = "cilas@teste.com" };
             _mockContatoRepositorio.Setup(x => x.ListarPorId(id)).ReturnsAsync(contato);
             _mockContatoRepositorio.Setup(x => x.Atualizar(contatoAtualizado)).ReturnsAsync(contatoAtualizado);
 

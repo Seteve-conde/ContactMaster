@@ -12,7 +12,12 @@ $(document).ready(function () {
 function getDatatable(id) {
     $(id).DataTable({
         "ordering": true,
-        "paging": true,
+        "paging": true,        
+        scrollY: 320,
+        deferRender: true,
+        scroller: true,
+        "lengthChange": true,
+        "lengthMenu": [5 ,10, 25, 50, 75, 100],
         "searching": true,
         "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado na tabela",

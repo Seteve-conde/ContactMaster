@@ -31,6 +31,7 @@ namespace Dados.Repositorio
 
         public async Task<UsuarioModel> Adicionar(UsuarioModel usuario)
         {
+            usuario.DataUserCreated = DateTime.Now;            
             await _bancoContext.Usuarios.AddAsync(usuario);
             await _bancoContext.SaveChangesAsync();
 
@@ -45,7 +46,9 @@ namespace Dados.Repositorio
 
             usuarioDb.Nome = usuario.Nome;
             usuarioDb.Email = usuario.Email;            
-            usuarioDb.AtualizationDate = usuario.AtualizationDate;
+            usuarioDb.Login = usuario.Login;            
+            usuarioDb.Perfil = usuario.Perfil;            
+            usuarioDb.AtualizationDate = DateTime.Now;
 
             _bancoContext.Usuarios.Update(usuarioDb);
             await _bancoContext.SaveChangesAsync();
