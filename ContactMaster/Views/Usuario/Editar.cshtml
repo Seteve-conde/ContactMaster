@@ -1,0 +1,49 @@
+﻿@using UserEnumPerfil;
+@model Dominio.Models.UsuarioModel
+@{
+    ViewData["Title"] = "Editar Usuário";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Editar Usuário</h1>
+</div>
+
+<form asp-controller="Usuario" asp-action="Alterar" method="post">
+
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label for="Nome">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o Nome do usuário">
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+
+    <div class="mb-3">
+        <label for="email">E-mail</label>
+        <input type="text" asp-for="Email" class="form-control" placeholder="Digite o e-mail do usuário">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+
+    <div class="mb-3">
+        <label for="Login">Login</label>
+        <input type="text" asp-for="Login" class="form-control" placeholder="Digite o login do Usuário!">
+        @Html.ValidationMessageFor(x => x.Login)
+    </div>
+
+    <div class="mb-3">
+        <label for="Nome">Perfil</label>
+        <select asp-for="Perfil" class="form-control">
+            <option value="0">Selecione</option>
+            <option value="@UsuariosPerfilEnum.Admin">Administrador</option>
+            <option value="@UsuariosPerfilEnum.enploye">Padrão</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="Senha">Senha</label>
+        <input type="password" asp-for="Senha" class="form-control" placeholder="Digite a senha do Usuário!">
+        @Html.ValidationMessageFor(x => x.Senha)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Alterar</button>
+    <a class="btn btn-secondary" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
+</form>

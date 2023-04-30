@@ -39,7 +39,7 @@ namespace ContactMaster.Controllers
             return View(usuarios);
         }
 
-        public async Task<IActionResult> ApagarConfirmacao(int id)
+        public async Task<IActionResult> ApagarUsuario(int id)
         {
             UsuarioModel usuarios = await _usuarioService.ObterPorId(id);
             return View(usuarios);

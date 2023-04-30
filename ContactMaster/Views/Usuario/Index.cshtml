@@ -36,12 +36,12 @@
     <h1 class="display-4">Users List</h1>
     <div class="table-bordered table-responsive">
 
-        <table class="table bg-transparent table-wrapper-scroll-y my-custom-scrollbar text-dark table table-bordered table-striped mb-0" cellspacing="0" style="background-color: darkblue" id="table-usuarios">
+        <table class="table bg-transparent text-dark table table-bordered table-striped mb-0" cellspacing="0" style="background-color: darkblue" id="table-usuarios">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Login</th>
+                    <th scope="col">Nome</th>                    
+                    <th scope="col">Login</th>                    
                     <th scope="col">E-mail</th>
                     <th scope="col">Data de cadastro</th>
                     <th scope="col"></th>
@@ -54,14 +54,14 @@
                     {
                         <tr>
                             <th scope="row">@usuario.Id</th>
-                            <td>@usuario.Nome</td>
-                            <td>@usuario.Login</td>
+                            <td>@usuario.Nome</td>                           
+                            <td>@usuario.Login</td>                           
                             <td>@usuario.Email</td>
                             <th>@usuario.DataUserCreated.ToString("dd-MM-yyyy")</th>
                             <td>
                                 <div class="btn-group" role="group">
                                     <a role="button" class="btn btn-secondary" asp-route-id="@usuario.Id" asp-controller="Usuario" asp-action="Editar">Editar</a><br />
-                                    <a role="button" class="btn btn-danger" asp-route-id="@usuario.Id" asp-controller="Usuario" asp-action="ApagarConfirmacao">Apagar</a>
+                                    <a role="button" class="btn btn-danger" asp-route-id="@usuario.Id" asp-controller="Usuario" asp-action="ApagarUsuario">Apagar</a>
                                 </div>
                             </td>
                         </tr>
