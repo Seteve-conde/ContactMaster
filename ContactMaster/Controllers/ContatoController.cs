@@ -28,7 +28,7 @@ namespace ContactMaster.Controllers
             return new Rotativa.AspNetCore.ViewAsPdf("Index", contatos);
         }
 
-        public async Task<IActionResult> Criar()
+        public IActionResult Criar()
         {
             return View();
         }
