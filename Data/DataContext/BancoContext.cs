@@ -13,6 +13,7 @@ namespace DataContext
         public DbSet<ContatoModel> Contatos { get; set; }
         public DbSet<UsuarioModel> Usuarios { get; set; }
         public DbSet<BonusModel> BonusModels { get; set; }
+        public DbSet<LoginModel> LoginModels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
