@@ -1,0 +1,40 @@
+﻿@using Dominio.Models
+@model LoginModel
+@{
+    Layout = "_LayoutLogin";
+    ViewData["Title"] = "Login";
+}
+<h2>Login</h2>
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label>X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+<nav class="navbar mb-2" style="background-color: rgba(0, 0, 0, 0.5);
+  color: #fff; border-radius: 10px solid">
+    <div class="container">
+        <a class="navbar-brand">Master contact login</a>
+
+
+
+        <form asp-controller="Login" asp-action="Entrar" method="post">
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" class="form-control" id="email" name="Email" value="" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" class="form-control" id="senha" name="Senha" value="" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+                @Html.ValidationMessageFor(x => x.Senha)
+            </div>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+    </div>
+</nav>
+
+

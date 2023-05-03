@@ -20,6 +20,8 @@ namespace Ioc
             services.AddScoped<IContatoService, ContatoService>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<ILoginRepositorio, LoginRepositorio>();
         }
     }
 }
