@@ -26,5 +26,10 @@ namespace Dominio.Models
         public DateTime DataUserCreated { get; set; }
         public DateTime? AtualizationDate { get; set;}
         public bool Selecionado { get; set; }
+
+        public bool SenhaValida(string senha)
+        {
+            return Senha == senha;
+        }
     }
 }

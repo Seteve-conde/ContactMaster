@@ -19,6 +19,11 @@ namespace Dados.Repositorio
             _bancoContext = bancoContext;
         }
 
+        public async Task<UsuarioModel> BuscarPorEmail(string email)
+        {
+            return await _bancoContext.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
+        }
+
         public async Task<UsuarioModel> ListarPorId(int id)
         {
             return await _bancoContext.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
