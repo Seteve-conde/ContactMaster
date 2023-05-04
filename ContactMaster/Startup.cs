@@ -9,6 +9,8 @@ using Dominio.Interfaces;
 using Dados.Repositorio;
 using Rotativa.AspNetCore;
 using Ioc;
+using Microsoft.AspNetCore.Http;
+using ContactMaster.Helper;
 
 namespace ContactMaster
 {
@@ -31,8 +33,17 @@ namespace ContactMaster
             //services.AddDbContext<BancoContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //services.AddDbContext<BancoContext>(opt => opt.UseOracle(Configuration.GetConnectionString("DefaultConnection")));
-                        
-            services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ISessao, Sessao>();
+
+            services.AddSession(o =>
+            {
+                o.Cookie.HttpOnly = true;
+                o.Cookie.IsEssential = true;
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +66,8 @@ namespace ContactMaster
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
