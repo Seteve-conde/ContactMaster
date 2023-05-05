@@ -1,9 +1,11 @@
-﻿using ContactMaster.Models;
+﻿using ContactMaster.Filters;
+using ContactMaster.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace ContactMaster.Controllers
 {
+    [FiltroParaUsuariosLogados]
     public class HomeController : Controller
     {
         //private readonly ILogger<HomeController> _logger;

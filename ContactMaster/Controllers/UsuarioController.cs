@@ -1,4 +1,5 @@
-﻿using ContactMaster.Services;
+﻿using ContactMaster.Filters;
+using ContactMaster.Services;
 using Dominio.Interfaces;
 using Dominio.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ContactMaster.Controllers
 {
+    [FiltroSomenteAdmin]
     public class UsuarioController : Controller
     {
         private readonly IUsuarioService _usuarioService;

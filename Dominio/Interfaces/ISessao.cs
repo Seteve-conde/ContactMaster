@@ -1,6 +1,6 @@
 ﻿using Dominio.Models;
 
-namespace ContactMaster.Helper
+namespace Dominio.Interfaces
 {
     public interface ISessao
     {

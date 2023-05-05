@@ -10,7 +10,7 @@ using Dados.Repositorio;
 using Rotativa.AspNetCore;
 using Ioc;
 using Microsoft.AspNetCore.Http;
-using ContactMaster.Helper;
+using ContactMasterService;
 
 namespace ContactMaster
 {
