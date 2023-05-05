@@ -1,8 +1,10 @@
-﻿using Dominio.Models;
+﻿using Dominio.Interfaces;
+using Dominio.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http.Extensions;
 
-namespace ContactMaster.Helper
+namespace ContactMasterService
 {
     public class Sessao : ISessao
     {

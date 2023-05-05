@@ -1,4 +1,5 @@
-﻿using Dominio.Interfaces;
+﻿using ContactMaster.Filters;
+using Dominio.Interfaces;
 using Dominio.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ContactMaster.Controllers
 {
+    [FiltroParaUsuariosLogados]
     public class BonusController : Controller
     {
         private readonly IBonusRepositorio _bonusRepositorio;

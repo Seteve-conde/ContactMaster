@@ -13,9 +13,14 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Contato" asp-action="Index">Contacts</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Users</a>
-        </li>
+       
+        @if (Model.PerfilEnum == UserEnumPerfil.UsuariosPerfilEnum.Admin)
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Users</a>
+            </li>
+        }
+
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Bonus" asp-action="Index">Bonus</a>
         </li>

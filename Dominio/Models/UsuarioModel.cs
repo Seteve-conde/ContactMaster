@@ -22,7 +22,7 @@ namespace Dominio.Models
         [DataType(DataType.Password)]
         public string Senha { get; set; }
         public string Perfil { get; set; }
-        public UsuariosPerfilEnum PerfilEnum { get; set; }
+        public UsuariosPerfilEnum? PerfilEnum { get; set; }
         public DateTime DataUserCreated { get; set; }
         public DateTime? AtualizationDate { get; set;}
         public bool Selecionado { get; set; }
