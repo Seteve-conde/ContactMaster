@@ -1,6 +1,8 @@
-﻿using DataContext;
+﻿using ContactMasterService;
+using DataContext;
 using Dominio.Interfaces;
 using Dominio.Models;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -36,7 +38,9 @@ namespace Dados.Repositorio
 
         public async Task<UsuarioModel> Adicionar(UsuarioModel usuario)
         {
-            usuario.DataUserCreated = DateTime.Now;            
+            
+            usuario.DataUserCreated = DateTime.Now;
+            usuario.Senha = usuario.Senha.CreateHash();
             await _bancoContext.Usuarios.AddAsync(usuario);
             await _bancoContext.SaveChangesAsync();
 
