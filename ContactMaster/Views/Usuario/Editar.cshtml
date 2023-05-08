@@ -1,4 +1,4 @@
-﻿@using UserEnumPerfil;
+﻿@using Dominio.Models
 @model Dominio.Models.UsuarioModel
 @{
     ViewData["Title"] = "Editar Usuário";
@@ -31,11 +31,12 @@
 
     <div class="mb-3">
         <label for="Nome">Perfil</label>
-        <select asp-for="Perfil" class="form-control">
-            <option value="0">Selecione</option>
+        <select asp-for="PerfilEnum" class="form-control">
+            <option value="">Selecione</option>
             <option value="@UsuariosPerfilEnum.Admin">Administrador</option>
             <option value="@UsuariosPerfilEnum.enploye">Padrão</option>
         </select>
+        @Html.ValidationMessageFor(x => x.PerfilEnum)
     </div>
 
     <div class="mb-3">

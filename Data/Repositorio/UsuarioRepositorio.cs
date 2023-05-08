@@ -14,11 +14,11 @@ namespace Dados.Repositorio
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
-        private readonly BancoContext _bancoContext;
+        private readonly BancoContext _bancoContext;       
 
         public UsuarioRepositorio(BancoContext bancoContext)
         {
-            _bancoContext = bancoContext;
+            _bancoContext = bancoContext;           
         }
 
         public async Task<UsuarioModel> BuscarPorEmail(string email)
@@ -37,10 +37,11 @@ namespace Dados.Repositorio
         }
 
         public async Task<UsuarioModel> Adicionar(UsuarioModel usuario)
-        {
+        {          
             
             usuario.DataUserCreated = DateTime.Now;
-            usuario.Senha = usuario.Senha.CreateHash();
+            usuario.SetSenhaHash();
+
             await _bancoContext.Usuarios.AddAsync(usuario);
             await _bancoContext.SaveChangesAsync();
 
@@ -56,7 +57,8 @@ namespace Dados.Repositorio
             usuarioDb.Nome = usuario.Nome;
             usuarioDb.Email = usuario.Email;            
             usuarioDb.Login = usuario.Login;            
-            usuarioDb.Perfil = usuario.Perfil;            
+            usuarioDb.PerfilEnum = usuario.PerfilEnum;
+            //usuarioDb.Senha = usuario.SetSenhaHash();
             usuarioDb.AtualizationDate = DateTime.Now;
 
             _bancoContext.Usuarios.Update(usuarioDb);

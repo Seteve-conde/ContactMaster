@@ -40,7 +40,7 @@ namespace ContactMaster.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    UsuarioModel usuario = await _usuarioRepositorio.BuscarPorEmail(loginModel.Email);
+                    UsuarioModel usuario = await _usuarioRepositorio.BuscarPorEmail(loginModel.Email);                    
 
                     if (usuario != null) 
                     {

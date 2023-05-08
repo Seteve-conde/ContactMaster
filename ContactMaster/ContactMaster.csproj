@@ -54,4 +54,8 @@
     <ProjectReference Include="..\Ioc\Ioc.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helper\" />
+  </ItemGroup>
+
 </Project>

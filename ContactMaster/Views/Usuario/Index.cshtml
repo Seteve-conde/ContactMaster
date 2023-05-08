@@ -58,7 +58,7 @@
                             <td>@usuario.Nome</td>
                             <td>@usuario.Login</td>
                             <td>@usuario.Email</td>                           
-                            <td>@(usuario.Perfil == UserEnumPerfil.UsuariosPerfilEnum.Admin.ToString() ? "Administrador" : "Padrão")</td>
+                            <td>@(usuario.PerfilEnum == UsuariosPerfilEnum.Admin ? "Administrador" : "Padrão")</td>
                             <th>@usuario.DataUserCreated.ToString("dd-MM-yyyy")</th>
                             <td>
                                 <div class="btn-group" role="group">

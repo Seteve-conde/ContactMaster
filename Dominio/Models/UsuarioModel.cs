@@ -1,9 +1,30 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using UserEnumPerfil;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Dominio.Models
 {
+    public static class Cripto
+    {
+        public static string CreateHash(this string value)
+        {
+            var hash = SHA1.Create();
+            var encode = new ASCIIEncoding();
+            var array = encode.GetBytes(value);
+
+            array = hash.ComputeHash(array);
+
+            var strHexa = new StringBuilder();
+
+            foreach (var item in array)
+            {
+                strHexa.Append(item.ToString("x2"));
+            }
+
+            return strHexa.ToString();
+        }
+    }
     public class UsuarioModel
     {
         public int Id { get; set; }
@@ -20,16 +41,23 @@ namespace Dominio.Models
 
         [Required(ErrorMessage = "Digite a senha do usuário")]
         [DataType(DataType.Password)]
-        public string Senha { get; set; }
-        public string Perfil { get; set; }
+        public string Senha { get; set; }        
         public UsuariosPerfilEnum? PerfilEnum { get; set; }
         public DateTime DataUserCreated { get; set; }
         public DateTime? AtualizationDate { get; set;}
         public bool Selecionado { get; set; }
 
+        
+
         public bool SenhaValida(string senha)
         {
-            return Senha == senha;
-        }      
+            return Senha == senha.CreateHash();
+        }
+
+        public void SetSenhaHash()
+        {
+            Senha = Senha.CreateHash();
+        }
+
     }
 }
