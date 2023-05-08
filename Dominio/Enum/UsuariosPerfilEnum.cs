@@ -1,4 +1,4 @@
-﻿namespace UserEnumPerfil
+﻿namespace Dominio.Models
 {
     public enum UsuariosPerfilEnum
     {

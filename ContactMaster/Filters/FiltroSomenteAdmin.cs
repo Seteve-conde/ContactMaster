@@ -26,7 +26,7 @@ namespace ContactMaster.Filters
                     context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } });
                 }
 
-                if (usuario.PerfilEnum != UserEnumPerfil.UsuariosPerfilEnum.Admin)
+                if (usuario.PerfilEnum != UsuariosPerfilEnum.Admin)
                 {
                     context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Restrito" }, { "action", "Index" } });
                 }
