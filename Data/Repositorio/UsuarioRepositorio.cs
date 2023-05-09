@@ -26,6 +26,11 @@ namespace Dados.Repositorio
             return await _bancoContext.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
         }
 
+        public async Task<UsuarioModel> RedefinirSenhaBuscarPorEmail(string email)
+        {
+            return await _bancoContext.Usuarios.FirstOrDefaultAsync(x => x.Email.ToUpper() == email.ToUpper());
+        }
+
         public async Task<UsuarioModel> ListarPorId(int id)
         {
             return await _bancoContext.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
@@ -77,6 +82,6 @@ namespace Dados.Repositorio
             await _bancoContext.SaveChangesAsync();
 
             return true;
-        }
+        }       
     }
 }

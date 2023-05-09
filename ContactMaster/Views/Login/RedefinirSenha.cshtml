@@ -1,10 +1,10 @@
 ﻿@using Dominio.Models
-@model LoginModel
+@model RedefinirSenhaModel
 @{
     Layout = "_LayoutLogin";
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Redefinir Senha";
 }
-<h2>Login</h2>
+<h2>Alterar Senha</h2>
 @if (TempData["MensagemErro"] != null)
 {
     <div class="alert alert-danger" role="alert">
@@ -17,9 +17,15 @@
     <div class="container">
         <a class="navbar-brand">Master contact login</a>
 
+        @if (TempData["MensagemSucesso"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-danger btn-sm close-alert" arial-label>X</button>
+                @TempData["MensagemSucesso"]
+            </div>
+        }
 
-
-        <form asp-controller="Login" asp-action="Entrar" method="post">
+        <form asp-controller="Login" asp-action="EnviarRedefinicaoSenha" method="post">
             <div class="form-group">
                 <label for="email">E-mail:</label>
                 <input type="email" class="form-control" id="email" name="Email" value="" />
@@ -32,12 +38,9 @@
                 <span asp-validation-for="Senha" class="text-danger"></span>
                 @Html.ValidationMessageFor(x => x.Senha)
             </div>
-
-            <p class="mb-4 text-sm-left mx-auto">
-                Esqueceu sua senha?
-                <a asp-action="RedefinirSenha" asp-controller="Login" class="text-primary text-gradient font-weight-bold">Redefinir minha senha</a>
-            </p>
-            <button type="submit" class="btn btn-primary">Entrar</button>
+            
+            <button type="submit" class="btn btn-primary btn-block">Redefinir Senha</button>
+            <a class="btn btn-secondary btn-block" asp-action="Index" asp-asp-controller="Login" role="button">Voltar</a>
         </form>
     </div>
 </nav>
