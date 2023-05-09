@@ -10,6 +10,7 @@ namespace Dominio.Interfaces
     public interface IUsuarioRepositorio
     {
         Task<UsuarioModel> BuscarPorEmail (string email);
+        Task<UsuarioModel> RedefinirSenhaBuscarPorEmail(string email);
         Task<UsuarioModel> ListarPorId(int id);
         Task<List<UsuarioModel>> BuscarTodos();
         Task<UsuarioModel> Adicionar(UsuarioModel usuario);

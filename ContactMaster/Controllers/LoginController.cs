@@ -26,6 +26,11 @@ namespace ContactMaster.Controllers
             return View();
         }
 
+        public IActionResult RedefinirSenha() 
+        {
+            return View();
+        }
+
         public IActionResult Sair()
         {
             _sessao.RemoverSessaoUsuario();
@@ -65,6 +70,37 @@ namespace ContactMaster.Controllers
                 TempData["MensagemErro"] = $"Ops, não conseguimos realizar seu login, tente novamente, detalhe do erro: {error.Message}";
                 return RedirectToAction("Index");
             }         
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EnviarRedefinicaoSenha(RedefinirSenhaModel redefinirSenhaModel) 
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    UsuarioModel usuario = await _usuarioRepositorio.RedefinirSenhaBuscarPorEmail(redefinirSenhaModel.Email);
+
+                    if (usuario != null)
+                    {
+                        string novaSenha = usuario.GerarNovaSenha();
+                        await _usuarioRepositorio.Atualizar(usuario);
+
+                        TempData["MensagemSucesso"] = $"Enviamos para seu e-mail cadastrado uma nova senha.";
+                        return RedirectToAction("Index", "Login");
+                    }
+
+                    TempData["MensagemErro"] = $"Não conseguimos redefinir sua senha. verifique os dados informados.";
+                    return RedirectToAction("Index", "Login");
+                }
+
+                return View("Index");
+            }
+            catch (Exception error)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos redefinir a sua senha, tente novamente, detalhe do erro: {error.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }
