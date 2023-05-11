@@ -21,7 +21,8 @@ namespace Ioc
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<ILoginService, LoginService>();
-            services.AddScoped<ILoginRepositorio, LoginRepositorio>();            
+            services.AddScoped<ILoginRepositorio, LoginRepositorio>();
+            services.AddScoped<IEmail, EmailService>();
 
         }
     }
