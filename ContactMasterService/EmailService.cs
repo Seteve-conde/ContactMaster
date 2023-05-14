@@ -15,7 +15,7 @@ namespace ContactMasterService
             _configuration = configuration;
         }
 
-        public bool Enviar(string email, string assunto, string mensagem) 
+        public async Task<bool> Enviar(string email, string assunto, string mensagem) 
         {
             try
             {
@@ -42,7 +42,7 @@ namespace ContactMasterService
                     smtp.Credentials = new NetworkCredential(username, senha);
                     smtp.EnableSsl = true;
 
-                    smtp.Send(mail);
+                    await Task.Run(() => smtp.Send(mail));
                     return true;
                 }
 
