@@ -89,7 +89,7 @@ namespace ContactMaster.Controllers
                         await _usuarioRepositorio.Atualizar(usuario);
                         string mensagem = $"Sua nova senha é: {novaSenha}";
 
-                        bool emailEnviado = _email.Enviar(usuario.Email, "Contact Master - Nova Senha", mensagem);
+                        bool emailEnviado = await _email.Enviar(usuario.Email, "Contact Master - Nova Senha", mensagem);
 
                         if (emailEnviado)
                         {

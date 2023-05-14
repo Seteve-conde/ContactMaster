@@ -15,15 +15,7 @@
 <nav class="navbar mb-2" style="background-color: rgba(0, 0, 0, 0.5);
   color: #fff; border-radius: 10px solid">
     <div class="container">
-        <a class="navbar-brand">Master contact login</a>
-
-        @if (TempData["MensagemSucesso"] != null)
-        {
-            <div class="alert alert-success" role="alert">
-                <button type="button" class="btn btn-danger btn-sm close-alert" arial-label>X</button>
-                @TempData["MensagemSucesso"]
-            </div>
-        }
+        <a class="navbar-brand">Master contact login</a>       
 
         <form asp-controller="Login" asp-action="EnviarRedefinicaoSenha" method="post">
             <div class="form-group">
