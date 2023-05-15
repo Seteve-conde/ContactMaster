@@ -59,6 +59,11 @@ namespace Dominio.Models
             Senha = Senha.CreateHash();
         }
 
+        public void SetNovaSenha(string novaSenha)
+        {
+            Senha = novaSenha.CreateHash();
+        }
+
         public string GerarNovaSenha() 
         {
             string novaSenha = Guid.NewGuid().ToString().Substring(0,8);

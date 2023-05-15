@@ -72,6 +72,25 @@ namespace Dados.Repositorio
             return usuarioDb;
         }
 
+        public async Task<UsuarioModel> AlterarSenha(AlterarSenhaModel alterarSenhaModel) 
+        {
+            UsuarioModel usuarioDb = await ListarPorId(alterarSenhaModel.Id);
+
+            if (usuarioDb == null) throw new Exception("Houve um erro na atualização da senha, usuário não encontrado!");
+
+            if (!usuarioDb.SenhaValida(alterarSenhaModel.SenhaAtual)) throw new Exception("Senha atual não confere!");
+
+            if (usuarioDb.SenhaValida(alterarSenhaModel.NovaSenha)) throw new Exception("Nova senha deve ser diferente da senha atual!");
+
+            usuarioDb.SetNovaSenha(alterarSenhaModel.NovaSenha);
+            usuarioDb.AtualizationDate = DateTime.Now;
+
+            _bancoContext.Usuarios.Update(usuarioDb);
+            await _bancoContext.SaveChangesAsync();
+
+            return usuarioDb;
+        }
+
         public async Task<bool> Apagar(int id)
         {
             UsuarioModel usuarioDb = await ListarPorId(id);
