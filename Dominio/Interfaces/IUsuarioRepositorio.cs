@@ -15,6 +15,7 @@ namespace Dominio.Interfaces
         Task<List<UsuarioModel>> BuscarTodos();
         Task<UsuarioModel> Adicionar(UsuarioModel usuario);
         Task<UsuarioModel> Atualizar(UsuarioModel usuario);
+        Task<UsuarioModel>AlterarSenha(AlterarSenhaModel alterarSenhaModel);
         Task<bool> Apagar(int id);
     }
 }
