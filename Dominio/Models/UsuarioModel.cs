@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
@@ -46,6 +47,7 @@ namespace Dominio.Models
         public DateTime DataUserCreated { get; set; }
         public DateTime? AtualizationDate { get; set;}
         public bool Selecionado { get; set; }
+        public virtual List<ContatoModel> Contatos { get; set; }
 
         
 

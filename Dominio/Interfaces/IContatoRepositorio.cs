@@ -7,7 +7,7 @@ namespace Dominio.Interfaces
     public interface IContatoRepositorio
     {
         Task<ContatoModel> ListarPorId(int id);
-        Task<List<ContatoModel>> BuscarTodos();
+        Task<List<ContatoModel>> BuscarTodos(int usuarioId);
         Task<ContatoModel> Adicionar(ContatoModel contato);
         Task<ContatoModel> Atualizar(ContatoModel contato);
         Task<bool> Apagar(int id);
