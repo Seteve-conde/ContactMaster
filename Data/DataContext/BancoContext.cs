@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Dominio.Models;
+using Dados.Map;
 
 namespace DataContext
 {
@@ -17,6 +18,10 @@ namespace DataContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new ContatoMap());
+
+            base.OnModelCreating(modelBuilder);
+
             _ = modelBuilder.Entity<BonusModel>()
                 .Property(b => b.Price)
                 .HasColumnType("decimal(18,2)");

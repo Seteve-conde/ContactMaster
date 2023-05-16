@@ -37,6 +37,7 @@ namespace ContactMaster.Controllers
 
         public async Task<IActionResult> Editar(int id)
         {
+
             ContatoModel contato = await _contatoService.ObterPorId(id);
             return View(contato);
         }
