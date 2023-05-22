@@ -38,7 +38,9 @@ namespace Dados.Repositorio
 
         public async Task<List<UsuarioModel>> BuscarTodos()
         {
-            return await _bancoContext.Usuarios.ToListAsync();
+            return await _bancoContext.Usuarios
+                .Include(x => x.Contatos)
+                .ToListAsync();
         }
 
         public async Task<UsuarioModel> Adicionar(UsuarioModel usuario)

@@ -1,0 +1,33 @@
+﻿@using Dominio.Models
+@model List<ContatoModel>
+
+<table id="table-contatos-usuario" class="table bg-transparent text-dark table table-bordered table-striped mb-0" cellspacing="0" style="background-color: darkblue" id="table-contatos">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Celular</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (ContatoModel contato in Model)
+            {
+                <tr>
+                    <th scope="row">@contato.Id</th>
+                    <td>@contato.Nome</td>
+                    <td>@contato.Email</td>
+                    <td>@contato.Celular</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr class="odd"><td valign="top" colspan="4">Nenhum contato encontrado</td></tr>
+        }
+    </tbody>
+</table>
+
+
