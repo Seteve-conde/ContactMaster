@@ -12,10 +12,13 @@ namespace ContactMaster.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly IContatoRepositorio _contatoRepositorio;
 
-        public UsuarioController(IUsuarioService usuarioService)
+        public UsuarioController(IUsuarioService usuarioService,
+                                 IContatoRepositorio contatoRepositorio )
         {
             _usuarioService = usuarioService;
+            _contatoRepositorio = contatoRepositorio;
         }
 
         public async Task<IActionResult> Index()
@@ -70,6 +73,12 @@ namespace ContactMaster.Controllers
                 return RedirectToAction("Index");
             }
 
+        }
+
+        public async Task<IActionResult> ListarContatosPorUsuarioId(int id)
+        {
+            List<ContatoModel> contatos = await _contatoRepositorio.BuscarTodos(id);
+            return PartialView("_ContatosUsuario", contatos);
         }
 
         [HttpPost]
