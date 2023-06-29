@@ -24,6 +24,7 @@ namespace Dominio.Models
 
         [Required(ErrorMessage = "Esta data não é valida")]
         public DateTime Data { get; set; }
+        public decimal Valor { get; set; }
         public bool Selecionado { get; set; }
         public int? UsuarioId { get; set; }
         public UsuarioModel Usuario { get; set; }

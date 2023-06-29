@@ -22,7 +22,11 @@ namespace DataContext
 
             base.OnModelCreating(modelBuilder);
 
-            _ = modelBuilder.Entity<BonusModel>()
+            modelBuilder.Entity<ContatoModel>()
+                .Property(c => c.Valor)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<BonusModel>()
                 .Property(b => b.Price)
                 .HasColumnType("decimal(18,2)");
         }

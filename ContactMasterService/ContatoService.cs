@@ -36,7 +36,7 @@ namespace ContactMasterService
             UsuarioModel usuarioLogado = _sessao.BuscarSessaoUsuario();
             contato.UsuarioId = usuarioLogado.Id;
             var contatosExistentes = await _contatoRepositorio.BuscarTodos(usuarioLogado.Id);
-            contatosExistentes = contatosExistentes.Where(c => c.Nome == contato.Nome || c.Celular == contato.Celular || c.Email == contato.Email).ToList();
+            contatosExistentes = contatosExistentes.Where(c => c.Nome == contato.Nome || c.Celular == contato.Celular || c.Email == contato.Email || c.Valor == contato.Valor).ToList();
 
             if (contatosExistentes.Any())
             {
