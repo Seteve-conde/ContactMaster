@@ -19,7 +19,8 @@ namespace ContatosTestes
         public ContatoServiceTeste()
         {
             _mockContatoRepositorio = new Mock<IContatoRepositorio>();
-            _contatoService = new ContatoService(_mockContatoRepositorio.Object);
+            var mockSessao = new Mock<ISessao>();
+            _contatoService = new ContatoService(_mockContatoRepositorio.Object, mockSessao.Object);
         }
 
         [Fact]
@@ -27,7 +28,8 @@ namespace ContatosTestes
         {
             // Arrange
             int id = 1;
-            var contato = new ContatoModel() { Id = id, Nome = "Seteve", Celular = "47984951269", Email = "steve.count.light@gmail.com" };
+            var contato = new ContatoModel() { Id = id, Nome = "Seteve", Celular = "47984951269", Email = "steve.count.light@gmail.com"
+            };
             _mockContatoRepositorio.Setup(x => x.ListarPorId(id)).ReturnsAsync(contato);
 
             // Act
@@ -46,7 +48,8 @@ namespace ContatosTestes
                 new ContatoModel { Id = 1, Nome = "Seteve", Celular = "47984951269", Email = "steve.count.light@gmail.com" },
                 new ContatoModel { Id = 2, Nome = "Kathlen", Celular = "41988513200", Email = "kathlen.cbv@gmail.com" }
             };
-            _mockContatoRepositorio.Setup(x => x.BuscarTodos()).ReturnsAsync(contatos);
+            int usuarioId = 1;
+            _mockContatoRepositorio.Setup(x => x.BuscarTodos(usuarioId)).ReturnsAsync(contatos);
 
             // Act
             var resultado = await _contatoService.ObterTodos();
@@ -59,9 +62,10 @@ namespace ContatosTestes
         public async Task Adicionar_DeveAdicionarContato()
         {
             // Arrange
-            var novoContato = new ContatoModel { Nome = "Abrao", Celular = "11987654321", Email = "abrao@teste.com" };
+            var novoContato = new ContatoModel {Nome = "Abrao", Celular = "11987654321", Email = "abrao@teste.com" };
             var contatosExistentes = new List<ContatoModel>();
-            _mockContatoRepositorio.Setup(x => x.BuscarTodos()).ReturnsAsync(contatosExistentes);
+            int usuarioId = 1;
+            _mockContatoRepositorio.Setup(x => x.BuscarTodos(usuarioId)).ReturnsAsync(contatosExistentes);
             _mockContatoRepositorio.Setup(x => x.Adicionar(novoContato)).ReturnsAsync(novoContato);
 
             // Act
@@ -77,7 +81,8 @@ namespace ContatosTestes
             // Arrange
             var novoContato = new ContatoModel { Nome = "Abrao", Celular = "11987654321", Email = "abrao@teste.com" };
             var contatosExistentes = new List<ContatoModel> { novoContato };
-            _mockContatoRepositorio.Setup(x => x.BuscarTodos()).ReturnsAsync(contatosExistentes);
+            var usuarioId = 1;
+            _mockContatoRepositorio.Setup(x => x.BuscarTodos(usuarioId)).ReturnsAsync(contatosExistentes);
 
             // Act & Assert
             await Assert.ThrowsAsync<Exception>(() => _contatoService.Adicionar(novoContato));

@@ -34,6 +34,12 @@
         @Html.ValidationMessageFor(x => x.Data)
     </div>
 
+    <div class="mb-3">
+        <label for="Valor">Valor</label>
+        <input type="text" asp-for="Valor" class="form-control" placeholder="Digite o valor">
+        @Html.ValidationMessageFor(x => x.Valor)
+    </div>
+
     <button type="submit" class="btn btn-primary">Alterar</button>
     <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="button">Voltar</a>
 </form>

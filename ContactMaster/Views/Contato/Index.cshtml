@@ -44,6 +44,7 @@
                     <th scope="col">E-mail</th>
                     <th scope="col">Celular</th>
                     <th scope="col">Data</th>
+                    <th scope="col">Valor</th>
                     <th scope="col">Ação</th>
                 </tr>
             </thead>
@@ -58,6 +59,7 @@
                             <td>@contato.Email</td>
                             <td>@contato.Celular</td>
                             <th>@contato.Data.ToString("dd-MM-yyyy")</th>
+                            <th>@contato.Valor</th>
                             <td>
                                 <div class="btn-group" role="group">
                                     <a role="button" class="btn btn-secondary" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="Editar">Editar</a><br />
