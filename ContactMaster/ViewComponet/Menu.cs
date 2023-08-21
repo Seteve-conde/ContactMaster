@@ -10,13 +10,18 @@ namespace ContactMaster.ViewComponet
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            string sessaoDoUsuario =  HttpContext.Session.GetString("sessaoUsuarioLogado");
+            string sessaoDoUsuario = await GetSessionStringAsync("sessaoUsuarioLogado");
 
             if (string.IsNullOrEmpty(sessaoDoUsuario)) return null;
 
             UsuarioModel usuario = JsonConvert.DeserializeObject<UsuarioModel>(sessaoDoUsuario);
 
             return View(usuario);
+        }
+
+        private Task<string> GetSessionStringAsync(string key)
+        {
+            return Task.Run(() => HttpContext.Session.GetString(key));
         }
     }
 }
