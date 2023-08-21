@@ -82,7 +82,7 @@ namespace ContactMaster.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Criar(UsuarioModel usuario)
+        public async Task<IActionResult> Adicionar(UsuarioModel usuario)
         {
             try
             {
