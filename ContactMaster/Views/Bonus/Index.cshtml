@@ -33,3 +33,82 @@
 
 </div>
 
+<div class="text-left">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-secondary" role="button" asp-controller="Bonus" asp-action="Criar">Adicionar novo contato</a>
+    </div>
+    <br />
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-secondary" role="button" target="_blank" asp-controller="Bonus" asp-action="GerarPdf">Gerar relatorio</a>
+    </div>
+
+    <br />
+
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label>X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label>X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+
+    <h1 class="display-4">Contacts List</h1>
+    <div class="table-bordered table-responsive">
+
+        <table class="table bg-transparent text-dark table table-bordered table-striped mb-0" cellspacing="0" style="background-color: darkblue" id="table-contatos">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Price</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (BonusModel Bonus in Model)
+                    {
+                        <tr>
+                            <th scope="row">@Bonus.Id</th>                            
+                            <td>@Bonus.Name</td>                            
+                            <td>@Bonus.Price</td>                            
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a role="button" class="btn btn-secondary" asp-route-id="@Bonus.Id" asp-controller="Bonus" asp-action="Editar">Editar</a><br />
+                                    <a role="button" class="btn btn-danger" asp-route-id="@Bonus.Id" asp-controller="Bonus" asp-action="ApagarConfirmacao">Apagar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <div id="lista-bonus" name="lista-bonus" class="table-bordered">
+        <div class="row">
+            @foreach (var Bonus in Model)
+            {
+                <div class="col-md-3">
+                    <div class="form-check">
+                        <input type="checkbox" id="selecionar-@Bonus.Id" name="selecionar-@Bonus.Name" value="@Bonus.Id" @(Bonus.Selecionado ? "checked" : "") class="form-check-input mr-2" />
+                        <label class="form-check-label" for="selecionar-@Bonus.Id">@Bonus.Name</label>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+</div>
+
