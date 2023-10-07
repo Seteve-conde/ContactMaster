@@ -10,11 +10,13 @@ namespace ContactMasterService
 {
     public class BonusService : IBonusService
     {
-        private readonly IBonusRepositorio _bonusRepositorio;       
+        private readonly IBonusRepositorio _bonusRepositorio;
+        private readonly ISessao _sessao;
 
-        public BonusService(IBonusRepositorio bonusRepositorio)
+        public BonusService(IBonusRepositorio bonusRepositorio, ISessao sessao)
         {
-            _bonusRepositorio = bonusRepositorio;           
+            _bonusRepositorio = bonusRepositorio;
+            _sessao = sessao;
         }
 
         public async Task<BonusModel> ObterPorId(int id)
@@ -22,15 +24,17 @@ namespace ContactMasterService
             return await _bonusRepositorio.ListarPorId(id);
         }
 
-        public async Task<List<BonusModel>> ObterTodos(BonusModel bonus)
-        {            
-            return await _bonusRepositorio.BuscarTodos(bonus);
+        public async Task<List<BonusModel>> ObterTodos()
+        {
+            UsuarioModel usuarioLogado = _sessao.BuscarSessaoUsuario();
+            return await _bonusRepositorio.BuscarTodos(usuarioLogado.Id);
         }
 
         public async Task<BonusModel> Adicionar(BonusModel bonus)
-        {            
-            
-            var bonusExistentes = await _bonusRepositorio.BuscarTodos(bonus);
+        {
+            UsuarioModel usuarioLogado = _sessao.BuscarSessaoUsuario();
+            bonus.UsuarioId = usuarioLogado.Id;
+            var bonusExistentes = await _bonusRepositorio.BuscarTodos(usuarioLogado.Id);
             var bonusExiste = bonusExistentes.Where(c => c.Name == bonus.Name || c.Price == bonus.Price).ToList();
 
             if (bonusExiste.Any())
@@ -43,7 +47,9 @@ namespace ContactMasterService
         }
 
         public async Task<BonusModel> Atualizar(BonusModel bonus)
-        {            
+        {
+            UsuarioModel usuarioLogado = _sessao.BuscarSessaoUsuario();
+            bonus.UsuarioId = usuarioLogado.Id;
             return await _bonusRepositorio.Atualizar(bonus);
         }
 

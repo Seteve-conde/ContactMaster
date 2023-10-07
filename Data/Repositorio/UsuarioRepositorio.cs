@@ -40,6 +40,7 @@ namespace Dados.Repositorio
         {
             return await _bancoContext.Usuarios
                 .Include(x => x.Contatos)
+                .Include(x => x.Bonus)
                 .ToListAsync();
         }
 

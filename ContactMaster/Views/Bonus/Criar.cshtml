@@ -1,17 +1,17 @@
 ﻿@model Dominio.Models.BonusModel
 @{
-    ViewData["Title"] = "Criar Contato";
+    ViewData["Title"] = "Criar Bonus";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Cadastrar Contato</h1>
+    <h1 class="display-4">Cadastrar Bonus</h1>
 </div>
 
-<form asp-controller="Contato" asp-action="Criar" method="post">
+<form asp-controller="Bonus" asp-action="Criar" method="post">
 
     <div class="mb-3">
         <label for="Nome">Nome</label>
-        <input type="text" asp-for="Name" class="form-control" placeholder="Nome do contato">
+        <input type="text" asp-for="Name" class="form-control" placeholder="Nome do Proprietario do valor">
         @Html.ValidationMessageFor(x => x.Name)
     </div>
 

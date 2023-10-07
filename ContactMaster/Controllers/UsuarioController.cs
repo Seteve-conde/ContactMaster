@@ -1,5 +1,6 @@
 ﻿using ContactMaster.Filters;
 using ContactMaster.Services;
+using Dados.Repositorio;
 using Dominio.Interfaces;
 using Dominio.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +14,14 @@ namespace ContactMaster.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IContatoRepositorio _contatoRepositorio;
+        private readonly IBonusRepositorio _bonusRepositorio;
 
         public UsuarioController(IUsuarioService usuarioService,
-                                 IContatoRepositorio contatoRepositorio )
+                                 IContatoRepositorio contatoRepositorio, IBonusRepositorio  bonusRepositorio )
         {
             _usuarioService = usuarioService;
             _contatoRepositorio = contatoRepositorio;
+            _bonusRepositorio = bonusRepositorio;
         }
 
         public async Task<IActionResult> Index()
@@ -79,6 +82,12 @@ namespace ContactMaster.Controllers
         {
             List<ContatoModel> contatos = await _contatoRepositorio.BuscarTodos(id);
             return PartialView("_ContatosUsuario", contatos);
+        }
+
+        public async Task<IActionResult> ListarBonusPorUsuarioId(int id)
+        {
+            List<BonusModel> bonus = await _bonusRepositorio.BuscarTodos(id);
+            return PartialView("_ContatosUsuario", bonus);
         }
 
         [HttpPost]

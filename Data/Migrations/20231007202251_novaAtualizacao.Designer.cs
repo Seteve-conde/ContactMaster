@@ -4,14 +4,16 @@ using DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dados.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    partial class BancoContextModelSnapshot : ModelSnapshot
+    [Migration("20231007202251_novaAtualizacao")]
+    partial class novaAtualizacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,9 +29,7 @@ namespace Dados.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -37,7 +37,7 @@ namespace Dados.Migrations
                     b.Property<bool>("Selecionado")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("UsuarioId")
+                    b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -149,8 +149,10 @@ namespace Dados.Migrations
             modelBuilder.Entity("Dominio.Models.BonusModel", b =>
                 {
                     b.HasOne("Dominio.Models.UsuarioModel", "Usuario")
-                        .WithMany("Bonus")
-                        .HasForeignKey("UsuarioId");
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Usuario");
                 });
@@ -166,8 +168,6 @@ namespace Dados.Migrations
 
             modelBuilder.Entity("Dominio.Models.UsuarioModel", b =>
                 {
-                    b.Navigation("Bonus");
-
                     b.Navigation("Contatos");
                 });
 #pragma warning restore 612, 618

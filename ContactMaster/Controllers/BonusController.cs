@@ -1,4 +1,6 @@
 ﻿using ContactMaster.Filters;
+using ContactMaster.Services;
+using ContactMasterService;
 using Dominio.Interfaces;
 using Dominio.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,29 +12,95 @@ namespace ContactMaster.Controllers
     [FiltroParaUsuariosLogados]
     public class BonusController : Controller
     {
-        private readonly IBonusRepositorio _bonusRepositorio;
+        private readonly IBonusService _bonusService;
 
-        public BonusController(IBonusRepositorio bonusRepositorio)
+        public BonusController(IBonusService bonusService)
         {
-            _bonusRepositorio = bonusRepositorio;
+            _bonusService = bonusService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            List<BonusModel> bonus = await _bonusService.ObterTodos();
+            return View(bonus);
+        }
+
+        public IActionResult Criar()
         {
             return View();
         }
 
-        public IActionResult IndexBonus()
+        public async Task<IActionResult> Editar(int id)
         {
-            List<BonusModel> bonus = _bonusRepositorio.BuscarTodosBonus();
+            BonusModel bonus = await _bonusService.ObterPorId(id);
             return View(bonus);
         }
 
-        [HttpPost]
-        public IActionResult IndexBonus(BonusModel bonus)
+        public async Task<IActionResult> Apagar(int id)
         {
-            _bonusRepositorio.AdicionarBonus(bonus);
-            return RedirectToAction(nameof(IndexBonus));
+            try
+            {
+                bool apagado = await _bonusService.Apagar(id);
+
+                if (apagado)
+                {
+                    TempData["MensagemSucesso"] = "valor apagado com sucesso!";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Ops, não conseguimos apagar seu montante!";
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception ex)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos apagar seu montante, mais detalhes do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Criar(BonusModel bonus)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    await _bonusService.Adicionar(bonus);
+                    TempData["MensagemSucesso"] = "Valor cadastrado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(bonus);
+            }
+            catch (System.Exception ex)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos cadastrar seu contato, tente novamente, detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Alterar(BonusModel bonus)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    await _bonusService.Atualizar(bonus);
+                    TempData["MensagemSucesso"] = "Valor alterado com sucesso";
+                    return RedirectToAction("Index");
+                }
+
+                return View("Editar", bonus);
+            }
+            catch (System.Exception ex)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos editar seu montante, tente novamente, detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+        }        
     }
 }

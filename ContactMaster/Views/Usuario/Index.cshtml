@@ -63,6 +63,7 @@
                             <td>
                                 <a href="#" usuario-id="@usuario.Id" class="btn btn-success btn-sm btn-total-contatos">
                                     @(usuario.Contatos != null && usuario.Contatos.Any() ? usuario.Contatos.Count() : 0)
+                                    @(usuario.Bonus != null && usuario.Bonus.Any() ? usuario.Bonus.Count() : 0)
                                 </a>
                             </td>
                             <th>@usuario.DataUserCreated.ToString("dd-MM-yyyy")</th>

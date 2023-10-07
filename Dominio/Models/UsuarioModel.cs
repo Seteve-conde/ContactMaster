@@ -48,6 +48,7 @@ namespace Dominio.Models
         public DateTime? AtualizationDate { get; set;}
         public bool Selecionado { get; set; }
         public virtual List<ContatoModel> Contatos { get; set; }
+        public virtual List<BonusModel> Bonus { get; set; }
 
         
 

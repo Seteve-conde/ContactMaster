@@ -1,13 +1,13 @@
 ﻿@model Dominio.Models.BonusModel
 @{
-    ViewData["Title"] = "Editar Contato";
+    ViewData["Title"] = "Editar Bonus";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Editar Contato</h1>
+    <h1 class="display-4">Editar Bonus</h1>
 </div>
 
-<form asp-controller="Contato" asp-action="Alterar" method="post">
+<form asp-controller="Bonus" asp-action="Alterar" method="post">
 
     <input type="hidden" asp-for="Id" />  
     <div class="mb-3">
@@ -23,5 +23,5 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Alterar</button>
-    <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="button">Voltar</a>
+    <a class="btn btn-secondary" asp-controller="Bonus" asp-action="Index" role="button">Voltar</a>
 </form>

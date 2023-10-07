@@ -10,16 +10,21 @@ namespace Dados.Repositorio
 {
     public class BonusRepositorio : IBonusRepositorio
     {
-        private readonly BancoContext _bancoContext;       
+        private readonly BancoContext _bancoContext;
+
+        public BonusRepositorio(BancoContext bancoContext)
+        {
+            _bancoContext = bancoContext;
+        }
 
         public async Task<BonusModel> ListarPorId(int id)
         {
             return await _bancoContext.BonusModels.FirstOrDefaultAsync(x => x.Id == id);            
         }
 
-        public async Task<List<BonusModel>> BuscarTodos(BonusModel bonus)
+        public async Task<List<BonusModel>> BuscarTodos(int usuarioId)
         {
-            return await _bancoContext.BonusModels.Where(x => x.Id == bonus.Id).ToListAsync();
+            return await _bancoContext.BonusModels.Where(x => x.UsuarioId == usuarioId).ToListAsync();
         }
 
         public async Task<BonusModel> Adicionar(BonusModel bonus)
@@ -32,26 +37,26 @@ namespace Dados.Repositorio
 
         public async Task<BonusModel> Atualizar(BonusModel bonus)
         {
-            BonusModel contatoDb = await ListarPorId(bonus.Id);
+            BonusModel BonusDb = await ListarPorId(bonus.Id);
 
-            if (contatoDb == null) throw new System.Exception("Ouve um erro ao atualizar dados do contato!");
+            if (BonusDb == null) throw new System.Exception("Ouve um erro ao atualizar dados do valor!");
 
-            contatoDb.Name = bonus.Name;            
-            contatoDb.Price = bonus.Price;
+            BonusDb.Name = bonus.Name;            
+            BonusDb.Price = bonus.Price;
 
-            _bancoContext.BonusModels.Update(contatoDb);
+            _bancoContext.BonusModels.Update(BonusDb);
             await _bancoContext.SaveChangesAsync();
 
-            return contatoDb;
+            return BonusDb;
         }
 
         public async Task<bool> Apagar(int id)
         {
-            BonusModel contatoDb = await ListarPorId(id);
+            BonusModel BonusDb = await ListarPorId(id);
 
-            if (contatoDb == null) throw new System.Exception("Houve um erro ao tentar Apagar o Contato");
+            if (BonusDb == null) throw new System.Exception("Houve um erro ao tentar Apagar o valor");
 
-            _bancoContext.BonusModels.Remove(contatoDb);
+            _bancoContext.BonusModels.Remove(BonusDb);
             await _bancoContext.SaveChangesAsync();
 
             return true;
