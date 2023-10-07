@@ -18,6 +18,7 @@ namespace Ioc
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
             services.AddScoped<IBonusRepositorio, BonusRepositorio>();
             services.AddScoped<IContatoService, ContatoService>();
+            services.AddScoped<IBonusService, BonusService>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<ILoginService, LoginService>();

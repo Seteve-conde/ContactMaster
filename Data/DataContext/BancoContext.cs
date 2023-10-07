@@ -19,6 +19,7 @@ namespace DataContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ContatoMap());
+            modelBuilder.ApplyConfiguration(new BonusMap());
 
             base.OnModelCreating(modelBuilder);
 
