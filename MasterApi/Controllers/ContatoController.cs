@@ -9,7 +9,7 @@ namespace MasterApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [FiltroParaUsuariosLogadosApi] 
+    [FiltroParaUsuariosLogadosService] 
     public class ContatoController : ControllerBase
     {
         private readonly IContatoService _contatoService;

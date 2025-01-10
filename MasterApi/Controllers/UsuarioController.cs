@@ -10,7 +10,7 @@ namespace MasterApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [FiltroSomenteAdminApi]
+    [FiltroSomenteAdminService]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;

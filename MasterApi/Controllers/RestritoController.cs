@@ -5,7 +5,7 @@ namespace MasterApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [FiltroParaUsuariosLogadosApi]
+    [FiltroParaUsuariosLogadosService]
     public class RestritoController : ControllerBase
     {
         [HttpGet("index")]

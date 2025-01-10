@@ -35,7 +35,7 @@ namespace ContactMaster
             //services.AddDbContext<BancoContext>(opt => opt.UseOracle(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<ISessao, Sessao>();
+            services.AddScoped<ISessao, SessaoService>();
 
             services.AddSession(o =>
             {
