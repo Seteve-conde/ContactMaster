@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace ContactMasterService
 {
-    public class FiltroSomenteAdminApi : ActionFilterAttribute
+    public class FiltroSomenteAdminService : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext context)
         {

@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Http.Extensions;
 
 namespace ContactMasterService
 {
-    public class Sessao : ISessao
+    public class SessaoService : ISessao
     {
         private readonly IHttpContextAccessor _httpContext;
 
-        public Sessao(IHttpContextAccessor httpContext)
+        public SessaoService(IHttpContextAccessor httpContext)
         {
             _httpContext = httpContext;
         }

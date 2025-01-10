@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace ContactMasterService
 {
-    public class FiltroParaUsuariosLogadosApi : ActionFilterAttribute
+    public class FiltroParaUsuariosLogadosService : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext context)
         {
