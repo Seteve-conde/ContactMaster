@@ -10,7 +10,8 @@ using Dados.Repositorio;
 using Rotativa.AspNetCore;
 using Ioc;
 using Microsoft.AspNetCore.Http;
-using ContactMasterService;
+using ContactMasterService.Services;
+using ContactMaster.Services;
 
 namespace ContactMaster
 {
@@ -35,7 +36,7 @@ namespace ContactMaster
             //services.AddDbContext<BancoContext>(opt => opt.UseOracle(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<ISessao, SessaoService>();
+            services.AddScoped<ISessaoService, SessaoService>();
 
             services.AddSession(o =>
             {

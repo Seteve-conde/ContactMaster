@@ -3,10 +3,11 @@ using Dominio.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http.Extensions;
+using ContactMaster.Services;
 
-namespace ContactMasterService
+namespace ContactMasterService.Services
 {
-    public class SessaoService : ISessao
+    public class SessaoService : ISessaoService
     {
         private readonly IHttpContextAccessor _httpContext;
 

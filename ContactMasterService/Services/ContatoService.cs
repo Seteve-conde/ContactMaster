@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ContactMasterService
+namespace ContactMasterService.Services
 {
     public class ContatoService : IContatoService
     {
         private readonly IContatoRepositorio _contatoRepositorio;
-        private readonly ISessao _sessao;
+        private readonly ISessaoService _sessao;
 
-        public ContatoService(IContatoRepositorio contatoRepositorio, ISessao sessao)
+        public ContatoService(IContatoRepositorio contatoRepositorio, ISessaoService sessao)
         {
             _contatoRepositorio = contatoRepositorio;
             _sessao = sessao;

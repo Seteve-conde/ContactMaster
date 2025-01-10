@@ -1,9 +1,8 @@
 ﻿using Dominio.Models;
 
-namespace Dominio.Interfaces
+namespace ContactMaster.Services
 {
-    public interface ISessao
-    {
+    public interface ISessaoService    {
         void CriarSessaoUsuario(UsuarioModel usuario);
         void RemoverSessaoUsuario();
         UsuarioModel BuscarSessaoUsuario();

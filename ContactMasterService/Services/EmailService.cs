@@ -1,21 +1,22 @@
-﻿using Dominio.Interfaces;
+﻿using ContactMaster.Services;
+using Dominio.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace ContactMasterService
+namespace ContactMasterService.Services
 {
-    public class EmailService : IEmail
+    public class EmailService : IEmailService
     {
         private readonly IConfiguration _configuration;
 
-        public EmailService(IConfiguration configuration) 
+        public EmailService(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-        public async Task<bool> Enviar(string email, string assunto, string mensagem) 
+        public async Task<bool> Enviar(string email, string assunto, string mensagem)
         {
             try
             {
@@ -47,11 +48,11 @@ namespace ContactMasterService
                 }
 
             }
-            catch (System.Exception ex) 
+            catch (System.Exception ex)
             {
                 //Gravar log de erro ao enviar e-mail
                 return false;
-            }           
+            }
         }
     }
 }

@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ContactMasterService
+namespace ContactMasterService.Services
 {
     public class BonusService : IBonusService
     {
         private readonly IBonusRepositorio _bonusRepositorio;
-        private readonly ISessao _sessao;
+        private readonly ISessaoService _sessao;
 
-        public BonusService(IBonusRepositorio bonusRepositorio, ISessao sessao)
+        public BonusService(IBonusRepositorio bonusRepositorio, ISessaoService sessao)
         {
             _bonusRepositorio = bonusRepositorio;
             _sessao = sessao;

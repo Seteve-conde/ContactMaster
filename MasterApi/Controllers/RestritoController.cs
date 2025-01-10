@@ -1,4 +1,5 @@
 ﻿using ContactMasterService;
+using ContactMasterService.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MasterApi.Controllers

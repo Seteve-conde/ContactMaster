@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ContactMaster.Services;
 using ContactMasterService;
+using ContactMasterService.Services;
 
 namespace MasterApi.Controllers
 {
