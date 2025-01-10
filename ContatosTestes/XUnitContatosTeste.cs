@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ContactMaster.Services;
-using ContactMasterService;
+using ContactMasterService.Services;
 using Dominio.Interfaces;
 using Dominio.Models;
 using Moq;
@@ -19,7 +19,7 @@ namespace ContatosTestes
         public ContatoServiceTeste()
         {
             _mockContatoRepositorio = new Mock<IContatoRepositorio>();
-            var mockSessao = new Mock<ISessao>();
+            var mockSessao = new Mock<ISessaoService>();
             _contatoService = new ContatoService(_mockContatoRepositorio.Object, mockSessao.Object);
         }
 

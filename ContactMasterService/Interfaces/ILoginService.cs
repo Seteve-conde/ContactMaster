@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio.Interfaces
+namespace ContactMaster.Services
 {
-    public interface IEmail
+    public interface ILoginService
     {
-        Task<bool> Enviar(string email, string assunto, string mensagem);
+        Task<bool> Login(string email, string password);
     }
 }

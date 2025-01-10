@@ -1,4 +1,5 @@
-﻿using Dominio.Interfaces;
+﻿using ContactMaster.Services;
+using Dominio.Interfaces;
 using Dominio.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,10 +12,10 @@ namespace MasterApi.Controllers
     public class LoginController : ControllerBase
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
-        private readonly ISessao _sessao;
-        private readonly IEmail _email;
+        private readonly ISessaoService _sessao;
+        private readonly IEmailService _email;
 
-        public LoginController(IUsuarioRepositorio usuarioRepositorio, ISessao sessao, IEmail email)
+        public LoginController(IUsuarioRepositorio usuarioRepositorio, ISessaoService sessao, IEmailService email)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _sessao = sessao;

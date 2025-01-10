@@ -1,5 +1,5 @@
 ﻿using ContactMaster.Services;
-using ContactMasterService;
+using ContactMasterService.Services;
 using Dados.Repositorio;
 using DataContext;
 using Dominio.Interfaces;
@@ -23,7 +23,7 @@ namespace Ioc
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<ILoginRepositorio, LoginRepositorio>();
-            services.AddScoped<IEmail, EmailService>();
+            services.AddScoped<IEmailService, EmailService>();
 
         }
     }

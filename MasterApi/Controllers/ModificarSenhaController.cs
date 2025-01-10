@@ -1,4 +1,5 @@
-﻿using Dominio.Interfaces;
+﻿using ContactMaster.Services;
+using Dominio.Interfaces;
 using Dominio.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,9 +12,9 @@ namespace MasterApi.Controllers
     public class ModificarSenhaController : ControllerBase
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
-        private readonly ISessao _sessao;
+        private readonly ISessaoService _sessao;
 
-        public ModificarSenhaController(IUsuarioRepositorio usuarioRepositorio, ISessao sessao)
+        public ModificarSenhaController(IUsuarioRepositorio usuarioRepositorio, ISessaoService sessao)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _sessao = sessao;

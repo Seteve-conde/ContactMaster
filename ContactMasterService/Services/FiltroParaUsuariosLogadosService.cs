@@ -5,30 +5,25 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
 using Newtonsoft.Json;
 
-namespace ContactMasterService
+namespace ContactMasterService.Services
 {
-    public class FiltroSomenteAdminService : ActionFilterAttribute
+    public class FiltroParaUsuariosLogadosService : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext context)
         {
             string sectionUser = context.HttpContext.Session.GetString("sessaoUsuarioLogado");
 
-            if (string.IsNullOrEmpty(sectionUser) ) 
+            if (string.IsNullOrEmpty(sectionUser))
             {
                 context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } });
             }
-            else 
+            else
             {
                 UsuarioModel usuario = JsonConvert.DeserializeObject<UsuarioModel>(sectionUser);
 
-                if (usuario == null ) 
+                if (usuario == null)
                 {
                     context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } });
-                }
-
-                if (usuario.PerfilEnum != UsuariosPerfilEnum.Admin)
-                {
-                    context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Restrito" }, { "action", "Index" } });
                 }
             }
 
