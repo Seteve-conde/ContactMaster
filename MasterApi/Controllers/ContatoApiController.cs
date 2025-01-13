@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 namespace MasterApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/contatos")]
     [FiltroParaUsuariosLogadosService] 
-    public class ContatoController : ControllerBase
+    public class ContatoApiController : ControllerBase
     {
         private readonly IContatoService _contatoService;
 
-        public ContatoController(IContatoService contatoService)
+        public ContatoApiController(IContatoService contatoService)
         {
             _contatoService = contatoService;
         }

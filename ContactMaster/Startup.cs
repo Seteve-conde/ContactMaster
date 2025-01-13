@@ -12,6 +12,8 @@ using Ioc;
 using Microsoft.AspNetCore.Http;
 using ContactMasterService.Services;
 using ContactMaster.Services;
+using System;
+using ContactMasterService.Interfaces;
 
 namespace ContactMaster
 {
@@ -44,7 +46,10 @@ namespace ContactMaster
                 o.Cookie.IsEssential = true;
             });
 
-
+            services.AddHttpClient<IContatoApiService, ContatoApiService>(client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:5000"); // Substitua pela URL da API
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
