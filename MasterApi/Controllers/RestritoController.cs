@@ -1,4 +1,5 @@
-﻿using ContactMasterService;
+﻿using ContactMaster.Filters;
+using ContactMasterService;
 using ContactMasterService.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,7 +7,7 @@ namespace MasterApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [FiltroParaUsuariosLogadosService]
+    [FiltroParaUsuariosLogados]
     public class RestritoController : ControllerBase
     {
         [HttpGet("index")]

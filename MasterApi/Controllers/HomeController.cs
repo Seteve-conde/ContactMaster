@@ -1,4 +1,5 @@
-﻿using ContactMaster.Models;
+﻿using ContactMaster.Filters;
+using ContactMaster.Models;
 using ContactMasterService;
 using ContactMasterService.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ namespace MasterApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [FiltroParaUsuariosLogadosService]
+    [FiltroParaUsuariosLogados]
     public class HomeController : ControllerBase
     {
         [HttpGet("index")]

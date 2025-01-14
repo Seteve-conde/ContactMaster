@@ -48,10 +48,10 @@ namespace MasterApi
             services.AddHttpContextAccessor();
 
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
-            services.AddScoped<IContatoService, ContatoService>();
-            services.AddScoped<ISessaoService, SessaoService>();
+            services.AddScoped<IContatoService, ContatoService>();            
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ISessaoService, SessaoService>();
 
             services.AddDistributedMemoryCache(); 
             services.AddSession(options =>
@@ -98,7 +98,7 @@ namespace MasterApi
             app.UseRouting();
 
             // Adiciona autorização (se necessário)
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             // Define os endpoints da API
             app.UseEndpoints(endpoints =>

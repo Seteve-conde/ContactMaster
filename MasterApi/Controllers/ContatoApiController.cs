@@ -1,4 +1,5 @@
-﻿using ContactMaster.Services;
+﻿using ContactMaster.Filters;
+using ContactMaster.Services;
 using ContactMasterService;
 using ContactMasterService.Services;
 using Dominio.Models;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 namespace MasterApi.Controllers
 {
     [ApiController]
-    [Route("api/contatos")]
-    [FiltroParaUsuariosLogadosService] 
+    [Route("api/[controller]")]
+    [FiltroParaUsuariosLogados] 
     public class ContatoApiController : ControllerBase
     {
         private readonly IContatoService _contatoService;

@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ContactMasterService\ContactMasterService.csproj" />
+    <ProjectReference Include="..\ContactMaster\ContactMaster.csproj" />
     <ProjectReference Include="..\Data\Dados.csproj" />
     <ProjectReference Include="..\Dominio\Dominio.csproj" />
   </ItemGroup>

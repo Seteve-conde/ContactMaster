@@ -46,9 +46,12 @@ namespace ContactMaster
                 o.Cookie.IsEssential = true;
             });
 
+            var apiBaseUrl = Configuration["ApiSettings:BaseUrl"];
+
+            // Configurar o HttpClient para usar a URL da API
             services.AddHttpClient<IContatoApiService, ContatoApiService>(client =>
             {
-                client.BaseAddress = new Uri("http://localhost:5000"); // Substitua pela URL da API
+                client.BaseAddress = new Uri(apiBaseUrl); // Usando a URL do appsettings.json
             });
         }
 
