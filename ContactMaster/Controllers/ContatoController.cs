@@ -1,5 +1,6 @@
 ﻿using ContactMaster.Filters;
 using ContactMaster.Services;
+using ContactMasterService.Interfaces;
 using Dominio.Interfaces;
 using Dominio.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,22 +12,22 @@ namespace ContactMaster.Controllers
     [FiltroParaUsuariosLogados]
     public class ContatoController : Controller
     {
-        private readonly IContatoService _contatoService;
+        private readonly IContatoApiService _contatoApiService;
 
-        public ContatoController(IContatoService contatoService)
+        public ContatoController(IContatoApiService contatoApiService)
         {
-            _contatoService = contatoService;
+            _contatoApiService = contatoApiService;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<ContatoModel> contatos = await _contatoService.ObterTodos();
+            List<ContatoModel> contatos = await _contatoApiService.ObterTodosAsync();
             return View(contatos);
         }
 
         public async Task<IActionResult> GerarPdf()
         {
-            List<ContatoModel> contatos = await _contatoService.ObterTodos();
+            List<ContatoModel> contatos = await _contatoApiService.ObterTodosAsync();
             return new Rotativa.AspNetCore.ViewAsPdf("Index", contatos);
         }
 
@@ -38,13 +39,13 @@ namespace ContactMaster.Controllers
         public async Task<IActionResult> Editar(int id)
         {
 
-            ContatoModel contato = await _contatoService.ObterPorId(id);
+            ContatoModel contato = await _contatoApiService.ObterPorIdAsync(id);
             return View(contato);
         }
 
         public async Task<IActionResult> ApagarConfirmacao(int id)
         {
-            ContatoModel contato = await _contatoService.ObterPorId(id);
+            ContatoModel contato = await _contatoApiService.ObterPorIdAsync(id);
             return View(contato);
         }
 
@@ -52,7 +53,7 @@ namespace ContactMaster.Controllers
         {
             try
             {
-                bool apagado = await _contatoService.Apagar(id);
+                bool apagado = await _contatoApiService.DeletarAsync(id);
                 
                 if (apagado)
                 {
@@ -80,7 +81,7 @@ namespace ContactMaster.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await _contatoService.Adicionar(contato);
+                    await _contatoApiService.CriarAsync(contato);
                     TempData["MensagemSucesso"] = "Contato cadastrado com sucesso!";
                     return RedirectToAction("Index");
                 }
@@ -101,7 +102,7 @@ namespace ContactMaster.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await _contatoService.Atualizar(contato);
+                    await _contatoApiService.AtualizarAsync(contato);
                     TempData["MensagemSucesso"] = "Contato alterado com sucesso";
                     return RedirectToAction("Index");
                 }
@@ -113,7 +114,6 @@ namespace ContactMaster.Controllers
                 TempData["MensagemErro"] = $"Ops, não conseguimos editar seu contato, tente novamente, detalhe do erro: {ex.Message}";
                 return RedirectToAction("Index");
             }
-
         }
     }
 }

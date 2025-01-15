@@ -37,9 +37,9 @@ namespace MasterApi
             {
                 options.AddPolicy("PermitirTudo", builder =>
                 {
-                    builder.AllowAnyOrigin()    // Permite qualquer origem
-                           .AllowAnyMethod()    // Permite qualquer método HTTP (GET, POST, PUT, DELETE, etc.)
-                           .AllowAnyHeader();   // Permite qualquer cabeçalho
+                    builder.AllowAnyOrigin()    
+                           .AllowAnyMethod()   
+                           .AllowAnyHeader();   
                 });
             });
 
@@ -56,9 +56,9 @@ namespace MasterApi
             services.AddDistributedMemoryCache(); 
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);  // Tempo máximo de inatividade da sessão
-                options.Cookie.HttpOnly = true;                  // Garante que o cookie de sessão seja acessado apenas via HTTP
-                options.Cookie.IsEssential = true;               // Garante que o cookie seja essencial para a aplicação
+                options.IdleTimeout = TimeSpan.FromMinutes(30);  
+                options.Cookie.HttpOnly = true;                  
+                options.Cookie.IsEssential = true;               
             });
 
             services.AddControllers();
@@ -82,28 +82,23 @@ namespace MasterApi
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
-            // Habilita o uso de redirecionamento HTTPS
+            
             app.UseHttpsRedirection();
-
-            // Habilita os arquivos estáticos (se necessário)
+            
             app.UseStaticFiles();
-
-            // Habilita o uso de sessões
+            
             app.UseSession();
 
             app.UseCors("PermitirTudo");
 
-            // Configura o roteamento
             app.UseRouting();
 
-            // Adiciona autorização (se necessário)
-            //app.UseAuthorization();
-
-            // Define os endpoints da API
+            
+            app.UseAuthorization();
+           
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();  // Mapeia as rotas dos controllers
+                endpoints.MapControllers();  
             });
         }
 

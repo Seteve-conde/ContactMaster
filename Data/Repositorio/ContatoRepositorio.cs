@@ -22,9 +22,9 @@ namespace Dados.Repositorio
            return await _bancoContext.Contatos.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<ContatoModel>> BuscarTodos(int usuarioId)
+        public async Task<List<ContatoModel>> BuscarTodos()
         {
-           return await _bancoContext.Contatos.Where(x => x.UsuarioId == usuarioId).ToListAsync();
+            return await _bancoContext.Contatos.ToListAsync();
         }       
 
         public async Task<ContatoModel> Adicionar(ContatoModel contato)
