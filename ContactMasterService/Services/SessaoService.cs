@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http.Extensions;
 using ContactMaster.Services;
+using System;
 
 namespace ContactMasterService.Services
 {
@@ -13,7 +14,7 @@ namespace ContactMasterService.Services
 
         public SessaoService(IHttpContextAccessor httpContext)
         {
-            _httpContext = httpContext;
+            _httpContext = httpContext ?? throw new ArgumentNullException(nameof(httpContext)); 
         }
 
         public UsuarioModel BuscarSessaoUsuario()

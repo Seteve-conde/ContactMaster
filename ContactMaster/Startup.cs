@@ -12,6 +12,8 @@ using Ioc;
 using Microsoft.AspNetCore.Http;
 using ContactMasterService.Services;
 using ContactMaster.Services;
+using System;
+using ContactMasterService.Interfaces;
 
 namespace ContactMaster
 {
@@ -44,7 +46,13 @@ namespace ContactMaster
                 o.Cookie.IsEssential = true;
             });
 
+            var apiBaseUrl = Configuration["ApiSettings:BaseUrl"];
 
+            // Configurar o HttpClient para usar a URL da API
+            services.AddHttpClient<IContatoApiService, ContatoApiService>(client =>
+            {
+                client.BaseAddress = new Uri(apiBaseUrl); // Usando a URL do appsettings.json
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

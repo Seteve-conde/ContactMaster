@@ -16,6 +16,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContatosTestes", "ContatosTestes\ContatosTestes.csproj", "{9D9D8988-2FF3-4E30-A631-D5855B65278F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterApi", "MasterApi\MasterApi.csproj", "{B3A9A329-417D-450D-BA86-D77D945E1D7D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{070ED332-F704-467E-B636-7673359F1DFE} = {070ED332-F704-467E-B636-7673359F1DFE}
+		{8FB85D46-1FE3-47E3-B708-F3EA9C051A63} = {8FB85D46-1FE3-47E3-B708-F3EA9C051A63}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

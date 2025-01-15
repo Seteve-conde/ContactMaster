@@ -79,7 +79,7 @@ namespace MasterApi.Controllers
         [HttpGet("{id}/contatos")]
         public async Task<IActionResult> GetContatosByUsuarioId(int id)
         {
-            var contatos = await _contatoRepositorio.BuscarTodos(id);
+            var contatos = await _contatoRepositorio.BuscarTodos();
             return Ok(contatos);
         }
 

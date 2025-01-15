@@ -79,7 +79,7 @@ namespace ContactMaster.Controllers
 
         public async Task<IActionResult> ListarContatosPorUsuarioId(int id)
         {
-            List<ContatoModel> contatos = await _contatoRepositorio.BuscarTodos(id);
+            List<ContatoModel> contatos = await _contatoRepositorio.BuscarTodos();
             return PartialView("_ContatosUsuario", contatos);
         }
 
